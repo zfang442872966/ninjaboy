@@ -3,15 +3,15 @@
 
 USING_NS_CC;
 
-// ¹¹ÔìÐÔ·½·¨
+// æž„é€ æ€§æ–¹æ³•
 void Hero::InitHeroSprite(char *hero_name, int m_iLevel)
 {
-	// ÊôÐÔ³õÊ¼»¯
+	// å±žæ€§åˆå§‹åŒ–
 	m_HeroSprite = NULL;
 	m_bCanCrazy = false;   
 	m_bIsAction = false;
 	m_bIsJumping = false;
-	HeroDirecton = false;    	// ÏòÓÒÔË¶¯
+	HeroDirecton = false;    	// å‘å³è¿åŠ¨
 	Hero_name = NULL;
 	IsRunning = false;
 	IsAttack = false;
@@ -33,11 +33,11 @@ Sprite* Hero::GetSprite()
 	return m_HeroSprite;
 }
 
-// ¶¯×÷·½·¨
-// ÉèÖÃ¶¯×÷
+// åŠ¨ä½œæ–¹æ³•
+// è®¾ç½®åŠ¨ä½œ
 void Hero::SetAnimation(const char *frameName, float delay, bool run_directon)
 {
-	// µ÷Õû·½Ïò
+	// è°ƒæ•´æ–¹å‘
 	if (HeroDirecton != run_directon)
 	{
 		HeroDirecton = run_directon;
@@ -46,31 +46,31 @@ void Hero::SetAnimation(const char *frameName, float delay, bool run_directon)
 	if (IsRunning || IsHurt || IsAttack)
 		return;
 
-	/* ´´½¨¶¯»­¶¯×÷ */
+	/* åˆ›å»ºåŠ¨ç”»åŠ¨ä½œ */
 	Animate* action = ActionTool::animationWithFrameName(frameName, -1, delay);
 	m_HeroSprite->runAction(action);
 	IsRunning = true;
 }
 
-// Í£Ö¹¶¯×÷
+// åœæ­¢åŠ¨ä½œ
 void Hero::StopAnimation()
 {
 	if (!IsRunning)
 		return;
-	m_HeroSprite->stopAllActions();//µ±Ç°¾«ÁéÍ£Ö¹ËùÓÐ¶¯»­
+	m_HeroSprite->stopAllActions();//å½“å‰ç²¾çµåœæ­¢æ‰€æœ‰åŠ¨ç”»
 
-	//»Ö¸´¾«ÁéÔ­À´µÄ³õÊ¼»¯ÌùÍ¼ 
-	this->removeChild(m_HeroSprite, true);//°ÑÔ­À´µÄ¾«ÁéÉ¾³ýµô
-	this->m_HeroSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(Hero_name));//»Ö¸´¾«ÁéÔ­À´µÄÌùÍ¼Ñù×Ó
+	//æ¢å¤ç²¾çµåŽŸæ¥çš„åˆå§‹åŒ–è´´å›¾ 
+	this->removeChild(m_HeroSprite, true);//æŠŠåŽŸæ¥çš„ç²¾çµåˆ é™¤æŽ‰
+	this->m_HeroSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(Hero_name));//æ¢å¤ç²¾çµåŽŸæ¥çš„è´´å›¾æ ·å­
 	m_HeroSprite->setFlippedX(HeroDirecton);
 	this->addChild(m_HeroSprite);
 	IsRunning = false;
 }
 
-// ÌøÆð
+// è·³èµ·
 void Hero::JumpUpAnimation(const char *name_each, float delay, bool run_directon)
 {
-	// µ÷Õû·½Ïò
+	// è°ƒæ•´æ–¹å‘
 	if (HeroDirecton != run_directon)
 	{
 		HeroDirecton = run_directon;
@@ -79,16 +79,16 @@ void Hero::JumpUpAnimation(const char *name_each, float delay, bool run_directon
 	if (IsHurt || IsAttack || IsDead)
 		return;
 
-	// ´´½¨¶¯»­¶¯×÷ 
+	// åˆ›å»ºåŠ¨ç”»åŠ¨ä½œ 
 	Animate* action = ActionTool::animationWithFrameName(name_each, -1, delay);
 	m_HeroSprite->runAction(action);
 	m_bIsJumping = true;
 }
 
-// ÌøÂä
+// è·³è½
 void Hero::JumpDownAnimation(const char *name_each, float delay, bool run_directon)
 {
-	// µ÷Õû·½Ïò
+	// è°ƒæ•´æ–¹å‘
 	if (HeroDirecton != run_directon)
 	{
 		HeroDirecton = run_directon;
@@ -97,29 +97,29 @@ void Hero::JumpDownAnimation(const char *name_each, float delay, bool run_direct
 	if (IsHurt || IsAttack)
 		return;
 
-	/* ´´½¨¶¯»­¶¯×÷ */
+	/* åˆ›å»ºåŠ¨ç”»åŠ¨ä½œ */
 	Animate* action = ActionTool::animationWithFrameName(name_each, -1, delay);
 	m_HeroSprite->runAction(action);
 	m_bIsJumping = true;
 }
 
-// ÌøÍê
+// è·³å®Œ
 void Hero::JumpEnd()
 {
-	m_HeroSprite->stopAllActions();//µ±Ç°¾«ÁéÍ£Ö¹ËùÓÐ¶¯»­
+	m_HeroSprite->stopAllActions();//å½“å‰ç²¾çµåœæ­¢æ‰€æœ‰åŠ¨ç”»
 
-	// »Ö¸´¾«ÁéÔ­À´µÄ³õÊ¼»¯ÌùÍ¼ 
-	this->removeChild(m_HeroSprite, true);//°ÑÔ­À´µÄ¾«ÁéÉ¾³ýµô
-	this->m_HeroSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(Hero_name));//»Ö¸´¾«ÁéÔ­À´µÄÌùÍ¼Ñù×Ó
+	// æ¢å¤ç²¾çµåŽŸæ¥çš„åˆå§‹åŒ–è´´å›¾ 
+	this->removeChild(m_HeroSprite, true);//æŠŠåŽŸæ¥çš„ç²¾çµåˆ é™¤æŽ‰
+	this->m_HeroSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(Hero_name));//æ¢å¤ç²¾çµåŽŸæ¥çš„è´´å›¾æ ·å­
 	m_HeroSprite->setFlippedX(HeroDirecton);
 	this->addChild(m_HeroSprite);
 	m_bIsJumping = false;
 }
 
-// ¹¥»÷
+// æ”»å‡»
 void Hero::AttackAnimation(const char *name_each, float delay, bool run_directon)
 {
-	// µ÷Õû·½Ïò
+	// è°ƒæ•´æ–¹å‘
 	if (HeroDirecton != run_directon)
 	{
 		HeroDirecton = run_directon;
@@ -127,17 +127,17 @@ void Hero::AttackAnimation(const char *name_each, float delay, bool run_directon
 	}
 	if (IsAttack || m_bIsJumping)
 		return;
-	// ´´½¨¶¯×÷
+	// åˆ›å»ºåŠ¨ä½œ
 	Animate* act = ActionTool::animationWithFrameName(name_each, 1, delay);
-	// ´´½¨»Øµ÷¶¯×÷£¬¹¥»÷½áÊøºóµ÷ÓÃAttackEnd()
+	// åˆ›å»ºå›žè°ƒåŠ¨ä½œï¼Œæ”»å‡»ç»“æŸåŽè°ƒç”¨AttackEnd()
 	CallFunc* callFunc = CallFunc::create(this, callfunc_selector(Hero::AttackEnd));
-	// ´´½¨Á¬Ðø¶¯×÷
+	// åˆ›å»ºè¿žç»­åŠ¨ä½œ
 	ActionInterval* attackact = Sequence::create(act, callFunc, NULL);
 	IsAttack = true;
 	m_HeroSprite->runAction(attackact);
 }
 
-// ¹¥»÷½áÊø
+// æ”»å‡»ç»“æŸ
 void Hero::AttackEnd(){
 	m_HeroSprite->setFlippedX(HeroDirecton);
 	IsAttack = false;
@@ -147,18 +147,18 @@ void Hero::AttackEnd(){
 	}
 }
 
-// ÊÜÉË
+// å—ä¼¤
 void Hero::HurtByMonsterAnimation(const char *name_each, float delay, bool run_directon)
 {
 	if (IsHurt || IsDead)
 		return;
-	//ÊÜÉËÓÅÏÈ
+	//å—ä¼¤ä¼˜å…ˆ
 	if (IsRunning || IsAttack)
 	{
-		m_HeroSprite->stopAllActions();//µ±Ç°¾«ÁéÍ£Ö¹ËùÓÐ¶¯»­
-		//»Ö¸´¾«ÁéÔ­À´µÄ³õÊ¼»¯ÌùÍ¼ 
-		this->removeChild(m_HeroSprite, true);//°ÑÔ­À´µÄ¾«ÁéÉ¾³ýµô
-		m_HeroSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(Hero_name));//»Ö¸´¾«ÁéÔ­À´µÄÌùÍ¼Ñù×Ó
+		m_HeroSprite->stopAllActions();//å½“å‰ç²¾çµåœæ­¢æ‰€æœ‰åŠ¨ç”»
+		//æ¢å¤ç²¾çµåŽŸæ¥çš„åˆå§‹åŒ–è´´å›¾ 
+		this->removeChild(m_HeroSprite, true);//æŠŠåŽŸæ¥çš„ç²¾çµåˆ é™¤æŽ‰
+		m_HeroSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(Hero_name));//æ¢å¤ç²¾çµåŽŸæ¥çš„è´´å›¾æ ·å­
 		m_HeroSprite->setFlippedX(HeroDirecton);
 		this->addChild(m_HeroSprite);
 		IsRunning = false;
@@ -166,9 +166,9 @@ void Hero::HurtByMonsterAnimation(const char *name_each, float delay, bool run_d
 	}
 
 	Animate* action = ActionTool::animationWithFrameName(name_each, 1, delay);
-	//´´½¨»Øµ÷¶¯×÷£¬ÊÜÉË¶¯»­½áÊøµ÷ÓÃHurtEnd()
+	//åˆ›å»ºå›žè°ƒåŠ¨ä½œï¼Œå—ä¼¤åŠ¨ç”»ç»“æŸè°ƒç”¨HurtEnd()
 	CallFunc* callFunc = CallFunc::create(this, callfunc_selector(Hero::HurtByMonsterEnd));
-	//´´½¨Á¬Ðø¶¯×÷
+	//åˆ›å»ºè¿žç»­åŠ¨ä½œ
 	ActionInterval* hurtackact = Sequence::create(action, callFunc, NULL);
 
 	m_HeroSprite->runAction(hurtackact);
@@ -177,7 +177,7 @@ void Hero::HurtByMonsterAnimation(const char *name_each, float delay, bool run_d
 
 }
 
-// ÊÜÉË½áÊø
+// å—ä¼¤ç»“æŸ
 void Hero::HurtByMonsterEnd()
 {
 	m_iCurrentHp -= 20.0f;
@@ -189,43 +189,43 @@ void Hero::HurtByMonsterEnd()
 	}
 }
 
-// ËÀÍö
+// æ­»äº¡
 void Hero::DeadAnimation(const char *name_each, float delay, bool run_directon)
 {
 	m_HeroSprite->stopAllActions();
-	// µ÷Õû·½Ïò
+	// è°ƒæ•´æ–¹å‘
 	if (HeroDirecton != run_directon)
 	{
 		HeroDirecton = run_directon;
 		m_HeroSprite->setFlippedX(run_directon);
 	}
-	// ´´½¨¶¯×÷
+	// åˆ›å»ºåŠ¨ä½œ
 	Animate* act = ActionTool::animationWithFrameName(name_each, 1, delay);
-	//´´½¨»Øµ÷¶¯×÷£¬¹¥»÷½áÊøºóµ÷ÓÃAttackEnd()
+	//åˆ›å»ºå›žè°ƒåŠ¨ä½œï¼Œæ”»å‡»ç»“æŸåŽè°ƒç”¨AttackEnd()
 	CallFunc* callFunc = CallFunc::create(this, callfunc_selector(Hero::DeadEnd));
-	//´´½¨Á¬Ðø¶¯×÷
+	//åˆ›å»ºè¿žç»­åŠ¨ä½œ
 	ActionInterval* attackact = Sequence::create(act, callFunc, NULL);
 	m_HeroSprite->runAction(attackact);
 	Director::getInstance()->getScheduler()->setTimeScale(0.5);
 }
 
-// ËÀÍö½áÊø
+// æ­»äº¡ç»“æŸ
 void Hero::DeadEnd()
 {
 	IsDead = true;
-	//»Ö¸´ËÀÍöµÄÑù×Ó
-	this->removeChild(m_HeroSprite, true);  //°ÑÔ­À´µÄ¾«ÁéÉ¾³ýµô
-	m_HeroSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("monsterDie6.png")); //»Ö¸´ËÀÍöµÄÑù×Ó
+	//æ¢å¤æ­»äº¡çš„æ ·å­
+	this->removeChild(m_HeroSprite, true);  //æŠŠåŽŸæ¥çš„ç²¾çµåˆ é™¤æŽ‰
+	m_HeroSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("monsterDie6.png")); //æ¢å¤æ­»äº¡çš„æ ·å­
 	m_HeroSprite->setFlippedX(HeroDirecton);
 	this->addChild(m_HeroSprite);
 
 }
 
-// ÅÐ¶ÏÎ»ÖÃ
+// åˆ¤æ–­ä½ç½®
 bool Hero::JudgePosition(Size visibleSize)
 {
-	if (this->getPositionX() > (visibleSize.width / 2.0 + 2.0) || (this->getPositionX() < visibleSize.width / 2.0 - 2.0)) // ¾«Áéµ½´ïmid?
+	if (this->getPositionX() > (visibleSize.width / 2.0 + 2.0) || (this->getPositionX() < visibleSize.width / 2.0 - 2.0)) // ç²¾çµåˆ°è¾¾mid?
 		return false;
 	else
-		return true;//µ½´ïÖÐ¼äÎ»ÖÃ
+		return true;//åˆ°è¾¾ä¸­é—´ä½ç½®
 }

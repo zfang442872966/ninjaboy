@@ -1,20 +1,20 @@
 #include "SelectGate.h"
 #include <math.h>
 #define PI acos(-1)
-//²Ëµ¥µÄËõĞ¡±ÈÀı ×îĞ¡µÄ±ÈÀıÊÇ1-MENU_SCALE
+//èœå•çš„ç¼©å°æ¯”ä¾‹ æœ€å°çš„æ¯”ä¾‹æ˜¯1-MENU_SCALE
 #define MENU_SCALE 0.3
-//²Ëµ¥µÄÇãĞ±¶È 
+//èœå•çš„å€¾æ–œåº¦ 
 #define MENU_ASLOPE 60.0
-//calcFunction(x) Îª x/(x+a),ÆäÖĞaÎª³£Êı
+//calcFunction(x) ä¸º x/(x+a),å…¶ä¸­aä¸ºå¸¸æ•°
 #define CALC_A 1
-//¶¯»­ÔËĞĞÊ±¼ä
+//åŠ¨ç”»è¿è¡Œæ—¶é—´
 #define ANIMATION_DURATION  0.3f 
-//²Ëµ¥ÏîµÄ´óĞ¡ÓëÆÁÄ»µÄ±ÈÀı£¬µ±È»¿ÉÒÔÍ¨¹ısetContentSizeÉèÖÃ
+//èœå•é¡¹çš„å¤§å°ä¸å±å¹•çš„æ¯”ä¾‹ï¼Œå½“ç„¶å¯ä»¥é€šè¿‡setContentSizeè®¾ç½®
 #define CONTENT_SIZE_SCALE (2.0/3)
-//²Ëµ¥Ïî³¤¶ÈÓë²Ëµ¥³¤¶ÈµÄ±ÈÀı »¬¶¯Ò»¸ö²Ëµ¥Ïî³¤¶È£¬²Ëµ¥Ïî±ä»¯Ò»¸ö
+//èœå•é¡¹é•¿åº¦ä¸èœå•é•¿åº¦çš„æ¯”ä¾‹ æ»‘åŠ¨ä¸€ä¸ªèœå•é¡¹é•¿åº¦ï¼Œèœå•é¡¹å˜åŒ–ä¸€ä¸ª
 #define ITEM_SIZE_SCALE (1.0/4)
 /*
-´úÂëÀïÃæ»¹ÓĞ¿ÉÒÔÉèÖÃµÄ²ÎÊı£¬ÕâÀïÃ»ÓĞÒ»Ò»Àı³ö»ò¸ø³öº¯Êı
+ä»£ç é‡Œé¢è¿˜æœ‰å¯ä»¥è®¾ç½®çš„å‚æ•°ï¼Œè¿™é‡Œæ²¡æœ‰ä¸€ä¸€ä¾‹å‡ºæˆ–ç»™å‡ºå‡½æ•°
 */
 USING_NS_CC;
 
@@ -41,28 +41,28 @@ void SelectGate::addMenuItem(cocos2d::MenuItem *item){
 	this->addChild(item);
 	_items.pushBack(item);
 	reset();
-	//Èç¹ûÏ£Íû¿ªÊ¼Ã»ÓĞÒÆ¶¯Ğ§¹û£¬¸Ä³ÉupdatePositionº¯Êı¼´¿É
+	//å¦‚æœå¸Œæœ›å¼€å§‹æ²¡æœ‰ç§»åŠ¨æ•ˆæœï¼Œæ”¹æˆupdatePositionå‡½æ•°å³å¯
 	updatePositionWithAnimation();
 	return;
 }
 void SelectGate::updatePosition(){
 	auto menuSize = getContentSize();
 	for (int i = 0; i < _items.size(); i++){
-		//ÉèÖÃÎ»ÖÃ
+		//è®¾ç½®ä½ç½®
 		float x = calcFunction(i - _index, menuSize.width / 2);
 		_items.at(i)->setPosition(Point(menuSize.width / 2 + x, menuSize.height / 2));
-		//ÉèÖÃzOrder,¼´»æÖÆË³Ğò
+		//è®¾ç½®zOrder,å³ç»˜åˆ¶é¡ºåº
 		_items.at(i)->setZOrder(-abs((i - _index) * 100));
-		//ÉèÖÃÉìËõ±ÈÀı
+		//è®¾ç½®ä¼¸ç¼©æ¯”ä¾‹
 		_items.at(i)->setScale(1.0 - abs(calcFunction(i - _index, MENU_SCALE)));
-		//ÉèÖÃÇãĞ±£¬NodeÃ»ÓĞsetCameraº¯Êı£¬½«OrbitCameraµÄÔËĞĞÊ±¼äÉèÎª0À´´ïµ½Ğ§¹û
+		//è®¾ç½®å€¾æ–œï¼ŒNodeæ²¡æœ‰setCameraå‡½æ•°ï¼Œå°†OrbitCameraçš„è¿è¡Œæ—¶é—´è®¾ä¸º0æ¥è¾¾åˆ°æ•ˆæœ
 		auto orbit1 = OrbitCamera::create(0, 1, 0, calcFunction(i - _lastIndex, MENU_ASLOPE), calcFunction(i - _lastIndex, MENU_ASLOPE) - calcFunction(i - _index, MENU_ASLOPE), 0, 0);
 		_items.at(i)->runAction(orbit1);
 	}
 	return;
 }
 void SelectGate::updatePositionWithAnimation(){
-	//ÏÈÍ£Ö¹ËùÓĞ¿ÉÄÜ´æÔÚµÄ¶¯×÷
+	//å…ˆåœæ­¢æ‰€æœ‰å¯èƒ½å­˜åœ¨çš„åŠ¨ä½œ
 	for (int i = 0; i < _items.size(); i++)
 		_items.at(i)->stopAllActions();
 	auto menuSize = getContentSize();
@@ -98,7 +98,7 @@ MenuItem * SelectGate::getCurrentItem(){
 }
 
 bool SelectGate::onTouchBegan(Touch* touch, Event* event){
-	//ÏÈÍ£Ö¹ËùÓĞ¿ÉÄÜ´æÔÚµÄ¶¯×÷
+	//å…ˆåœæ­¢æ‰€æœ‰å¯èƒ½å­˜åœ¨çš„åŠ¨ä½œ
 	for (int i = 0; i < _items.size(); i++)
 		_items.at(i)->stopAllActions();
 	if (_selectedItem)

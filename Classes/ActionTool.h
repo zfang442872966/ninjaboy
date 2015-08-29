@@ -1,4 +1,4 @@
-/*工具类：创建动画*/
+/*宸ュ叿绫伙細鍒涘缓鍔ㄧ敾*/
 
 #ifndef ActionTool_H__
 #define ActionTool_H__

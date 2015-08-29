@@ -4,12 +4,12 @@
 using namespace std;
 using namespace cocos2d;
 
-//×Ö·ûasciiÂë
-// ¿Õ¸ñ
+//å­—ç¬¦asciiç 
+// ç©ºæ ¼
 const static int SPACE = 32;
-// »»ĞĞ
+// æ¢è¡Œ
 const static int NEXTLINE = 10;
-// tab ºáÏòÖÆ±í·û
+// tab æ¨ªå‘åˆ¶è¡¨ç¬¦
 const static int TAB = 9;
 
 string replace(string source, string pattern, string dstPattern)
@@ -55,7 +55,7 @@ bool XMLParser::initWithFile(const char *xmlFileName)
 	m_pDictionary = new CCDictionary();
 	SAXParser _parser;
 	_parser.setDelegator(this);
-	//»ñÈ¡ÎÄ¼şÈ«Â·¾¶
+	//è·å–æ–‡ä»¶å…¨è·¯å¾„
 	string fullPath = FileUtils::getInstance()->fullPathForFilename(xmlFileName);
 	CCLOG("xml parser full path : %s", fullPath.c_str());
 
@@ -82,12 +82,12 @@ bool XMLParser::initWithString(const char *content)
 	return _parse.parse(content, strlen(content));
 }
 
-//¿ªÊ¼Ò»¸ö½Úµã
-// ±ÈÈç <string name="muzhuang">Ä¾\n×®\n¹Ö</string>
-//name    Îª		:string 
-//atts[0] ÎªÊôĞÔ	: name
-//atts[1] ÎªÖµ		: app_name
-//atts[2] ÒÔ´ËÀàÍÆ
+//å¼€å§‹ä¸€ä¸ªèŠ‚ç‚¹
+// æ¯”å¦‚ <string name="muzhuang">æœ¨\næ¡©\næ€ª</string>
+//name    ä¸º		:string 
+//atts[0] ä¸ºå±æ€§	: name
+//atts[1] ä¸ºå€¼		: app_name
+//atts[2] ä»¥æ­¤ç±»æ¨
 void XMLParser::startElement(void *ctx, const char *name, const char **atts)
 {
 	this->startXMLElement = (char *)name;
@@ -125,7 +125,7 @@ void XMLParser::textHandler(void *ctx, const char *s, int len)
 {
 	string value((char *)s, 0, len);
 
-	//ÊÇ·ñÈ«ÊÇ·ÇÕı³£×Ö·û
+	//æ˜¯å¦å…¨æ˜¯éæ­£å¸¸å­—ç¬¦
 	bool noValue = true;
 	for (int i = 0; i < len; ++i)
 	{

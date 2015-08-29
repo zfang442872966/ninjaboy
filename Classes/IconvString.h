@@ -1,4 +1,4 @@
-/*×Ö·û±àÂë*/
+/*å­—ç¬¦ç¼–ç */
 
 #ifndef __ICONVSTRING_H__
 #define __ICONVSTRING_H__

@@ -1,4 +1,4 @@
-/*Ó¢ĞÛÊµÌåÀà*/
+/*è‹±é›„å®ä½“ç±»*/
 #ifndef __Hero__H__
 #define __Hero__H__
 
@@ -8,39 +8,39 @@ USING_NS_CC;
 class Hero : public Node
 {
 public:
-	// ¸ù¾İÍ¼Æ¬Ãû´´½¨Ó¢ĞÛ
+	// æ ¹æ®å›¾ç‰‡ååˆ›å»ºè‹±é›„
 	void InitHeroSprite(char *hero_name, int iLevel);
-	// ·µ»Øµ±Ç°Ó¢ĞÛ
+	// è¿”å›å½“å‰è‹±é›„
 	Sprite* GetSprite();
 
-	// ÉèÖÃ¶¯»­£¬run_directonÎª¾«ÁéÁ³³¯Ïò£¬false³¯ÓÒ,frameNameÎªÍ¼Æ¬Ö¡Ãû×Ö
+	// è®¾ç½®åŠ¨ç”»ï¼Œrun_directonä¸ºç²¾çµè„¸æœå‘ï¼Œfalseæœå³,frameNameä¸ºå›¾ç‰‡å¸§åå­—
 	void SetAnimation(const char *frameName, float delay, bool run_directon);
-	// Í£Ö¹¶¯»­
+	// åœæ­¢åŠ¨ç”»
 	void StopAnimation();
-	// ÌøÆğ¶¯»­
+	// è·³èµ·åŠ¨ç”»
 	void JumpUpAnimation(const char *name_each, float delay, bool run_directon);
-	// ÌøÂä¶¯»­
+	// è·³è½åŠ¨ç”»
 	void JumpDownAnimation(const char *name_each, float delay, bool run_directon);
-	// ÌøÂä¶¯»­½áÊø
+	// è·³è½åŠ¨ç”»ç»“æŸ
 	void JumpEnd();
-	// ¹¥»÷¶¯»­
+	// æ”»å‡»åŠ¨ç”»
 	void AttackAnimation(const char *name_each, float delay, bool run_directon);
-	// ¹¥»÷¶¯»­½áÊø
+	// æ”»å‡»åŠ¨ç”»ç»“æŸ
 	void AttackEnd();
-	// ËÀÍö¶¯»­
+	// æ­»äº¡åŠ¨ç”»
 	void DeadAnimation(const char *name_each, float delay, bool run_directon);
-	// ËÀÍö¶¯»­½áÊø
+	// æ­»äº¡åŠ¨ç”»ç»“æŸ
 	void DeadEnd();
-	// ÊÜÉË¶¯»­
+	// å—ä¼¤åŠ¨ç”»
 	void HurtByMonsterAnimation(const char *name_each, float delay, bool run_directon);
-	// ÊÜÉË¶¯»­½áÊø
+	// å—ä¼¤åŠ¨ç”»ç»“æŸ
 	void HurtByMonsterEnd();
-	// ÅĞ¶ÏÓ¢ĞÛÊÇ·ñÔË¶¯µ½ÁË´°¿ÚµÄÖĞ¼äÎ»ÖÃ,visibleSizeÎªµ±Ç°´°¿ÚµÄ´óĞ¡  
+	// åˆ¤æ–­è‹±é›„æ˜¯å¦è¿åŠ¨åˆ°äº†çª—å£çš„ä¸­é—´ä½ç½®,visibleSizeä¸ºå½“å‰çª—å£çš„å¤§å°  
 	bool JudgePosition(Size visibleSize);
 
 	bool IsDead;
 
-	// HP & MP Öµ
+	// HP & MP å€¼
 	float m_iCurrentHp;
 	float m_iTotleHp;
 	float m_iCurrentMp;
@@ -49,19 +49,19 @@ public:
 	float percentage;
 	float m_iSpeed;
 
-	bool m_bIsAction;          // ²é¿´µ±Ç°ÊÇ·ñÒÑ¾­ÔÚ´ò¹ÖÁË
-	bool m_bIsJumping;         // ²é¿´ÊÇ·ñÔÚÌø
-	bool IsRunning;  // ÅĞ¶ÏÊÇ·ñÔÚÅÜ¶¯»­
-	bool IsAttack;  // ÅĞ¶ÏÊÇ·ñÔÚ¹¥»÷¶¯»­
+	bool m_bIsAction;          // æŸ¥çœ‹å½“å‰æ˜¯å¦å·²ç»åœ¨æ‰“æ€ªäº†
+	bool m_bIsJumping;         // æŸ¥çœ‹æ˜¯å¦åœ¨è·³
+	bool IsRunning;  // åˆ¤æ–­æ˜¯å¦åœ¨è·‘åŠ¨ç”»
+	bool IsAttack;  // åˆ¤æ–­æ˜¯å¦åœ¨æ”»å‡»åŠ¨ç”»
 	
-	bool IsHurt; // ÅĞ¶ÏÊÇ·ñÊÜÉË
+	bool IsHurt; // åˆ¤æ–­æ˜¯å¦å—ä¼¤
 	
-	bool HeroDirecton; // Ó¢ĞÛÔË¶¯µÄ·½Ïò
-	bool m_bCanCrazy; // ÅĞ¶ÏÊÇ·ñ´¦ÓÚ¿ñ±©×´Ì¬
+	bool HeroDirecton; // è‹±é›„è¿åŠ¨çš„æ–¹å‘
+	bool m_bCanCrazy; // åˆ¤æ–­æ˜¯å¦å¤„äºç‹‚æš´çŠ¶æ€
 
 	CREATE_FUNC(Hero);
 private:
-	Sprite* m_HeroSprite; // ¾«Áé
-	char *Hero_name; // ÓÃÀ´±£´æ³õÊ¼×´Ì¬µÄ¾«ÁéÍ¼Æ¬Ãû³Æ
+	Sprite* m_HeroSprite; // ç²¾çµ
+	char *Hero_name; // ç”¨æ¥ä¿å­˜åˆå§‹çŠ¶æ€çš„ç²¾çµå›¾ç‰‡åç§°
 };
 #endif

@@ -5,7 +5,7 @@ Animate* ActionTool::animationWithFrameName(const char *frameName, int iloops, f
 	SpriteFrame* frame = NULL;
 	Animation* animation = Animation::create();
 	int index = 1;
-	// ´´½¨Ö¡¶ÔÏó 
+	// åˆ›å»ºå¸§å¯¹è±¡ 
 	do
 	{
 		String * name = String::createWithFormat("%s%d.png", frameName, index++);
@@ -16,10 +16,10 @@ Animate* ActionTool::animationWithFrameName(const char *frameName, int iloops, f
 		}
 		animation->addSpriteFrame(frame);
 	} while (true);
-	animation->setDelayPerUnit(delay);  // Ã¿Ö¡²¥·Å¼ä¸ô
+	animation->setDelayPerUnit(delay);  // æ¯å¸§æ’­æ”¾é—´éš”
 	animation->setRestoreOriginalFrame(true);
 	animation->setLoops(iloops);
-	// ´´½¨¶¯»­¶¯×÷
+	// åˆ›å»ºåŠ¨ç”»åŠ¨ä½œ
 	Animate* action = Animate::create(animation);
 	return action;
 }
@@ -28,7 +28,7 @@ Animate* ActionTool::animationWithFrameAndNum(const char *frameName, int frameco
 {
 	SpriteFrame* frame = NULL;
 	Animation* animation = Animation::create();
-	// ±éÀúÍ¼Æ¬Ö¡
+	// éå†å›¾ç‰‡å¸§
 	for (int index = 1; index <= framecount; index++)
 	{
 		String * name = String::createWithFormat("%s%d.png", frameName, index++);
@@ -40,7 +40,7 @@ Animate* ActionTool::animationWithFrameAndNum(const char *frameName, int frameco
 	Animate* animate = Animate::create(animation);
 
 /*
-	// µÚ¶şÖĞÊµÏÖ·½Ê½£¬ÓÃÒ»¸öÖ¡Í¼Æ¬µÄÏòÁ¿Êı×é£¬´´½¨Animation
+	// ç¬¬äºŒä¸­å®ç°æ–¹å¼ï¼Œç”¨ä¸€ä¸ªå¸§å›¾ç‰‡çš„å‘é‡æ•°ç»„ï¼Œåˆ›å»ºAnimation
 	Vector<SpriteFrame*> animFrames;
 	char str[20];
 	for (int k = 1; k <= framecount; k++)

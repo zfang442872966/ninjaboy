@@ -1,53 +1,53 @@
-/*Ñ¡¹Ø¹¦ÄÜ³¡¾°µÄ×Ô¶¨Òå¿Ø¼ş*/
+/*é€‰å…³åŠŸèƒ½åœºæ™¯çš„è‡ªå®šä¹‰æ§ä»¶*/
 #ifndef __SelectGate_H__
 #define __SelectGate_H__
 
 #include "cocos2d.h"
 /*
-*Ä£·ÂÂÖ²¥Í¼Æ¬Ñ¡Ôñ²Ëµ¥
-*ÏÔÊ¾ËùÓĞ²Ëµ¥Ïî£¬Ïò±ßÔµÒÆ¶¯»á²»¶Ï¼õ»º
+*æ¨¡ä»¿è½®æ’­å›¾ç‰‡é€‰æ‹©èœå•
+*æ˜¾ç¤ºæ‰€æœ‰èœå•é¡¹ï¼Œå‘è¾¹ç¼˜ç§»åŠ¨ä¼šä¸æ–­å‡ç¼“
 */
 class SelectGate :public cocos2d::Layer{
 public:
-	//¹¹Ôì·½·¨
+	//æ„é€ æ–¹æ³•
 	CREATE_FUNC(SelectGate);
-	//Ìí¼Ó²Ëµ¥Ïî
+	//æ·»åŠ èœå•é¡¹
 	void addMenuItem(cocos2d::MenuItem *item);
-	//¸üĞÂÎ»ÖÃ
+	//æ›´æ–°ä½ç½®
 	void updatePosition();
-	//¸üĞÂÎ»ÖÃ£¬ÓĞ¶¯»­
+	//æ›´æ–°ä½ç½®ï¼Œæœ‰åŠ¨ç”»
 	void updatePositionWithAnimation();
-	//Î»ÖÃ½ÃÕı  ĞŞ¸ÄÎ»ÖÃforwardÎªÒÆ¶¯·½Ïò  µ±³¬¹ı1/3£¬½ø1
-	//true ÎªÕıÏò  false ¸º
+	//ä½ç½®çŸ«æ­£  ä¿®æ”¹ä½ç½®forwardä¸ºç§»åŠ¨æ–¹å‘  å½“è¶…è¿‡1/3ï¼Œè¿›1
+	//true ä¸ºæ­£å‘  false è´Ÿ
 	void rectify(bool forward);
-	//³õÊ¼»¯
+	//åˆå§‹åŒ–
 	virtual bool init();
-	//ÖØÖÃ  ÏÔÊ¾ËùÒıºÅÉèÖÃÎª0
+	//é‡ç½®  æ˜¾ç¤ºæ‰€å¼•å·è®¾ç½®ä¸º0
 	void reset();
-	//·µ»Ø±»Ñ¡ÖĞµÄitem
+	//è¿”å›è¢«é€‰ä¸­çš„item
 	cocos2d::MenuItem * getCurrentItem();
 private:
-	//ÉèÖÃµ±Ç°ÏÔÊ¾Ë÷Òı
+	//è®¾ç½®å½“å‰æ˜¾ç¤ºç´¢å¼•
 	void setIndex(int index);
-	//ÉèÖÃµ±Ç°ÏÔÊ¾²Ëµ¥ÏîµÄË÷ÒıºÅ
+	//è®¾ç½®å½“å‰æ˜¾ç¤ºèœå•é¡¹çš„ç´¢å¼•å·
 	float getIndex();
 
-	//ÊıÑ§¼ÆËãÊ½width*index/(abs(index)+CALC_A) ,ÆäÖĞCALC_AÎª³£Êı
+	//æ•°å­¦è®¡ç®—å¼width*index/(abs(index)+CALC_A) ,å…¶ä¸­CALC_Aä¸ºå¸¸æ•°
 	float calcFunction(float index, float width);
 private:
-	//²Ëµ¥²Ëµ¥ÏîµÄË÷ÒıºÅ
+	//èœå•èœå•é¡¹çš„ç´¢å¼•å·
 	float _index;
-	//ÉÏÒ»´Î²Ëµ¥ÏîµÄË÷ÒıºÅ
+	//ä¸Šä¸€æ¬¡èœå•é¡¹çš„ç´¢å¼•å·
 	float _lastIndex;
-	//²Ëµ¥Ïî¼¯ºÏ,_childrenË³Ğò»á±ä»¯£¬ĞÂ½¨Êı×é±£´æË³Ğò
+	//èœå•é¡¹é›†åˆ,_childrené¡ºåºä¼šå˜åŒ–ï¼Œæ–°å»ºæ•°ç»„ä¿å­˜é¡ºåº
 	cocos2d::Vector<cocos2d::MenuItem *> _items;
-	//¼àÌıº¯Êı
+	//ç›‘å¬å‡½æ•°
 	virtual bool onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event);
 	virtual void onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event);
 	virtual void onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event);
-	//¶¯»­Íê½áµ÷ÓÃº¯Êı£¬Õâ¸öÖ÷ÒªÊÇÈ·¶¨ÄÄÒ»¸ö²Ëµ¥ÏîÔÚÇ°Ãæ
+	//åŠ¨ç”»å®Œç»“è°ƒç”¨å‡½æ•°ï¼Œè¿™ä¸ªä¸»è¦æ˜¯ç¡®å®šå“ªä¸€ä¸ªèœå•é¡¹åœ¨å‰é¢
 	void actionEndCallBack(float dx);
-	//µ±Ç°±»Ñ¡ÔñµÄitem
+	//å½“å‰è¢«é€‰æ‹©çš„item
 	cocos2d::MenuItem *_selectedItem;
 };
 #endif

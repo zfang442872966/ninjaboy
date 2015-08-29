@@ -1,4 +1,4 @@
-/*È«¾Ö²ÎÊı*/
+/*å…¨å±€å‚æ•°*/
 
 #ifndef __GlobalData__H__
 #define __GlobalData__H__
@@ -22,39 +22,39 @@ extern bool m_bFlag2;
 extern bool m_bFlag3;
 extern bool m_bFlag4;
 extern bool m_bFlag5;
-// ×î´óµØÍ¼¹ØÊı
+// æœ€å¤§åœ°å›¾å…³æ•°
 #define MAPMAX 9
-// µ±Ç°Ñ¡ÔñµÄ¹Ø¿¨
+// å½“å‰é€‰æ‹©çš„å…³å¡
 extern int m_iSelectGate;
-// µĞÈËÖÖÀà
+// æ•Œäººç§ç±»
 const static int gl_iEnemyType = 1;
-// ¹ÖÎïÃû×Ö
+// æ€ªç‰©åå­—
 const static std::string gl_sEnemyName[gl_iEnemyType] = { "muzhuang" };
-// ¹ÖÎïÊÜÉË¶¯×÷Ãû×Ö
+// æ€ªç‰©å—ä¼¤åŠ¨ä½œåå­—
 const static std::string gl_sEnemyByHurt[gl_iEnemyType] = { "mzaHurt" };
-// ¹ÖÎïÕ½Á¦¶¯×÷Ö¡Í¼Æ¬Ãû×Ö
+// æ€ªç‰©æˆ˜åŠ›åŠ¨ä½œå¸§å›¾ç‰‡åå­—
 const static std::string gl_sEnemyFrameName[gl_iEnemyType] = { "mzStand" };
-// ¹ÖÎïËÀÍö¶¯×÷Ãû×Ö
+// æ€ªç‰©æ­»äº¡åŠ¨ä½œåå­—
 const static std::string gl_sEnemyDie[gl_iEnemyType] = { "mzDead" };
 
-// ¹ÖÎïÒÆ¶¯¶¯×÷Ãû×Ö
+// æ€ªç‰©ç§»åŠ¨åŠ¨ä½œåå­—
 const static std::string gl_sEnemyMoveSpriteAnimation[gl_iEnemyType] = { "mzWalk" };
-// ¹ÖÎï¶¯×÷Ö¡Í¼Æ¬ÑÓÊ±
+// æ€ªç‰©åŠ¨ä½œå¸§å›¾ç‰‡å»¶æ—¶
 const static float gl_fEnemyMoveSpriteAnimationDelay[gl_iEnemyType] = { 0.0625 };
-// ¹ÖÎïÒÆ¶¯¶¯×÷Ö¡Í¼Æ¬ÊıÁ¿
+// æ€ªç‰©ç§»åŠ¨åŠ¨ä½œå¸§å›¾ç‰‡æ•°é‡
 const static int gl_iEnemyMoveFrameCount[gl_iEnemyType] = { 16 };
 
-// ¹ÖÎï¹¥»÷Ö¡Í¼Æ¬ÊıÁ¿
+// æ€ªç‰©æ”»å‡»å¸§å›¾ç‰‡æ•°é‡
 const static int gl_iEnemyAttackFrameCount[gl_iEnemyType] = { 11 };
-// ¹ÖÎï¹¥»÷Ö¡Í¼Æ¬Ö¡Í¼Æ¬ÑÓÊ±
+// æ€ªç‰©æ”»å‡»å¸§å›¾ç‰‡å¸§å›¾ç‰‡å»¶æ—¶
 const static float gl_fEnemyAttackFrameDelay[gl_iEnemyType] = { 0.1 };
-// ¹ÖÎïÊÇ·ñÓĞÎäÆ÷
-const static std::string gl_sEnemyBullet[gl_iEnemyType] = { "0" }; //0´ú±íÃ»ÓĞ£¬1´ú±íÓĞ
-// ¹ÖÎïµÄ¹¥»÷ÄÜÁ¿
+// æ€ªç‰©æ˜¯å¦æœ‰æ­¦å™¨
+const static std::string gl_sEnemyBullet[gl_iEnemyType] = { "0" }; //0ä»£è¡¨æ²¡æœ‰ï¼Œ1ä»£è¡¨æœ‰
+// æ€ªç‰©çš„æ”»å‡»èƒ½é‡
 const static std::string gl_sEnemyPower[gl_iEnemyType] = { "50" };
-// ¹ÖÎïµÄÑªÁ¿
+// æ€ªç‰©çš„è¡€é‡
 const static std::string gl_sEnemyBlood[gl_iEnemyType] = { "550" };
-// ¹ÖÎïËÀÍöºóµÄÌá¹©µÄ¾­Ñé
+// æ€ªç‰©æ­»äº¡åçš„æä¾›çš„ç»éªŒ
 const static std::string gl_sEnemyExp[gl_iEnemyType] = { "200" };
 
 #endif

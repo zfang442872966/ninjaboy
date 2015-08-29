@@ -1,4 +1,4 @@
-/*XML½âÎöÀà*/
+/*XMLè§£æç±»*/
 #ifndef __XMLParser_H__
 #define __XMLParser_H__
 
@@ -10,7 +10,7 @@
 class XMLParser : public cocos2d::Ref, public cocos2d::SAXDelegator
 {
 public:
-	// ½âÎöÖ¸¶¨µÄxmlÎÄ¼ş
+	// è§£ææŒ‡å®šçš„xmlæ–‡ä»¶
 	static XMLParser* parseWithFile(const char *xmlFileName);
 
 	static XMLParser* parseWithString(const char *content);
@@ -18,21 +18,21 @@ public:
 	XMLParser();
 	virtual ~XMLParser();
 
-	// ´Ó±¾µØxmlÎÄ¼ş¶ÁÈ¡
+	// ä»æœ¬åœ°xmlæ–‡ä»¶è¯»å–
 	bool initWithFile(const char *xmlFileName);
-	// ´Ó×Ö·ûÖĞ¶ÁÈ¡£¬¿ÉÓÃÓÚ¶ÁÈ¡ÍøÂçÖĞµÄxmlÊı¾İ
+	// ä»å­—ç¬¦ä¸­è¯»å–ï¼Œå¯ç”¨äºè¯»å–ç½‘ç»œä¸­çš„xmlæ•°æ®
 	bool initWithString(const char *content);
 
-	// ¶ÔÓ¦xml±êÇ©¿ªÊ¼,Èç£º<string name="app_name">
+	// å¯¹åº”xmlæ ‡ç­¾å¼€å§‹,å¦‚ï¼š<string name="app_name">
 	virtual void startElement(void *ctx, const char *name, const char **atts);
 
-	// ¶ÔÓ¦xml±êÇ©½áÊø,Èç£º</string>
+	// å¯¹åº”xmlæ ‡ç­¾ç»“æŸ,å¦‚ï¼š</string>
 	virtual void endElement(void *ctx, const char *name);
 
-	// ¶ÔÓ¦xml±êÇ©ÎÄ±¾
+	// å¯¹åº”xmlæ ‡ç­¾æ–‡æœ¬
 	virtual void textHandler(void *ctx, const char *s, int len);
 
-	// »ñÈ¡¶ÔÓ¦±êÇ©µÄ×Ö·û´®
+	// è·å–å¯¹åº”æ ‡ç­¾çš„å­—ç¬¦ä¸²
 	cocos2d::String* getString(const char *key);
 
 private:

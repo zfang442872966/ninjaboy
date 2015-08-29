@@ -1,4 +1,4 @@
-﻿#include "GlobalData.h"
+#include "GlobalData.h"
 #include "Monster.h"
 
 int m_iSelectGate;
