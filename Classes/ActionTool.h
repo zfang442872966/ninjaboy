@@ -12,4 +12,4 @@ public:
 	static Animate* animationWithFrameAndNum(const char *frameName, int num, float delay);
 };
 
-#endif // ActionTool_H__s
+#endif// ActionTool_H__s

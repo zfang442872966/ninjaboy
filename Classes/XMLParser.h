@@ -1,4 +1,4 @@
-/*XML解析类*/
+/*XML解析类.*/
 #ifndef __XMLParser_H__
 #define __XMLParser_H__
 
@@ -10,7 +10,7 @@
 class XMLParser : public cocos2d::Ref, public cocos2d::SAXDelegator
 {
 public:
-	// 解析指定的xml文件
+	// 解析指定的xml文件.
 	static XMLParser* parseWithFile(const char *xmlFileName);
 
 	static XMLParser* parseWithString(const char *content);
@@ -18,21 +18,21 @@ public:
 	XMLParser();
 	virtual ~XMLParser();
 
-	// 从本地xml文件读取
+	// 从本地xml文件读取.
 	bool initWithFile(const char *xmlFileName);
-	// 从字符中读取，可用于读取网络中的xml数据
+	// 从字符中读取，可用于读取网络中的xml数据.
 	bool initWithString(const char *content);
 
-	// 对应xml标签开始,如：<string name="app_name">
+	// 对应xml标签开始,如：<string name="app_name">.
 	virtual void startElement(void *ctx, const char *name, const char **atts);
 
-	// 对应xml标签结束,如：</string>
+	// 对应xml标签结束,如：</string>.
 	virtual void endElement(void *ctx, const char *name);
 
-	// 对应xml标签文本
+	// 对应xml标签文本.
 	virtual void textHandler(void *ctx, const char *s, int len);
 
-	// 获取对应标签的字符串
+	// 获取对应标签的字符串.
 	cocos2d::String* getString(const char *key);
 
 private:

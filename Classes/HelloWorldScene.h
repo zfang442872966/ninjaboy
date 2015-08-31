@@ -16,4 +16,4 @@ public:
     CREATE_FUNC(HelloWorld);
 };
 
-#endif // __HELLOWORLD_SCENE_H__
+#endif// __HELLOWORLD_SCENE_H__

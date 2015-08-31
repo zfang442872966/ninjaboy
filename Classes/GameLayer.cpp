@@ -10,7 +10,7 @@
 
 USING_NS_CC;
 using namespace CocosDenshion;
-using namespace cocos2d::extension; //引用cocos2d::extension命名空间
+using namespace cocos2d::extension; //引用cocos2d::extension命名空间.
 
 Scene* GameLayer::createScene()
 {
@@ -64,8 +64,8 @@ bool GameLayer::init()
 	myMap->InitMap(midName->getCString(), groundName->getCString(), beforeName->getCString());
 	this->addChild(myMap, 1);
 
-	// 界面控制键初始化
-	// 技能键
+	// 界面控制键初始化.
+	// 技能键.
 	auto m_pFistBG = Scale9Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("fist.png"));
 	auto m_pFistBtn = ControlButton::create(m_pFistBG);
 	m_pFistBtn->setPreferredSize(Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("fist.png"))->getContentSize());
@@ -82,7 +82,7 @@ bool GameLayer::init()
 	m_pComboBtn = ControlButton::create(m_pComboBG);
 	m_pComboBtn->setPreferredSize(Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName(comoboName->getCString()))->getContentSize());
 
-	// 按键背景
+	// 按键背景.
 	auto m_pFistPic = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("quan.png"));
 	auto m_pFootPic = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("jiao.png"));
 	auto m_pJumpPic = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("tiao.png"));
@@ -122,11 +122,11 @@ bool GameLayer::init()
 	this->addChild(m_pJumpPic, 1);
 	this->addChild(m_pComboPic, 1);
 
-	// 行走控制键，暂停键
+	// 行走控制键，暂停键.
 	auto puaseGameItem = MenuItemSprite::create(
 		Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("pauseNormal.png")),
 		Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("pauseSelected.png")),
-		CC_CALLBACK_1(GameLayer::gamePause, this)); // Pause
+		CC_CALLBACK_1(GameLayer::gamePause, this)); // Pause.
 
 	auto backwardBG = Scale9Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("directionNormal.png"));
 	auto backwardSelBG = Scale9Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("directionSelected.png"));
@@ -158,7 +158,7 @@ bool GameLayer::init()
 	this->addChild(forwardBtn, 1);
 	this->addChild(menuWalk, 1);
 
-	// 状态条
+	// 状态条.
 	m_pBG = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("barGround.png"));
 
 	m_pHPBar = ProgressTimer::create(Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("HPBar.png")));
@@ -183,7 +183,7 @@ bool GameLayer::init()
 
 	this->addChild(m_pBG, 1);
 
-	// 英雄
+	// 英雄.
 	m_pHero = Hero::create();
 	m_pHero->InitHeroSprite("idle.png", 1);
 	m_pHero->setPosition(100, 360);
@@ -196,7 +196,7 @@ bool GameLayer::init()
 	return true;
 }
 
-// 拳击
+// 拳击.
 void GameLayer::fistAttack(Ref* pSender, Control::EventType type)
 {
 	if (m_pHero->IsRunning || m_pHero->IsAttack || m_pHero->IsHurt || m_pHero->m_bIsJumping)
@@ -207,7 +207,7 @@ void GameLayer::fistAttack(Ref* pSender, Control::EventType type)
 	m_pHero->AttackAnimation("fist", 0.1f, m_bDirection);
 }
 
-// 腿击
+// 腿击.
 void GameLayer::footAttack(Ref* psender, Control::EventType type)
 {
 	if (m_pHero->IsRunning || m_pHero->IsAttack || m_pHero->IsHurt || m_pHero->m_bIsJumping)
@@ -218,7 +218,7 @@ void GameLayer::footAttack(Ref* psender, Control::EventType type)
 	m_pHero->AttackAnimation("leg", 0.1f, m_bDirection);
 }
 
-// 跳
+// 跳.
 void GameLayer::jump(Ref* pSender, Control::EventType type)
 {
 
@@ -268,27 +268,27 @@ void GameLayer::comboAttack(Ref* pSender, Control::EventType type)
 
 void GameLayer::gamePause(Ref* pSender)
 {
-	//可以直接使用pause方法暂停当前的场景，但是这样做有一个bug，就是不能够屏蔽触摸事件，所以采用截图的方法
+	//可以直接使用pause方法暂停当前的场景，但是这样做有一个bug，就是不能够屏蔽触摸事件，所以采用截图的方法.
 	//Director::getInstance()->pause();
 
 	/*截取当前场景的图片并且保存*/
 
 	auto size = Director::getInstance()->getWinSize();
-	//RenderTexture是一个纹理渲染类，我们需要把要渲染的当前场景放进去，这是初始化它的大小
+	//RenderTexture是一个纹理渲染类，我们需要把要渲染的当前场景放进去，这是初始化它的大小.
 	render = RenderTexture::create(size.width, size.height);
-	//开始获取内容
+	//开始获取内容.
 	render->begin();
-	//是用节点的visit方法加入到渲染中
+	//是用节点的visit方法加入到渲染中.
 	Director::getInstance()->getRunningScene()->visit();
 	//结束
 	render->end();
 	render->retain();
 
-	//3.0 截屏需要在截完屏的下一帧才能处理RenderTexture，这点要注意
+	//3.0 截屏需要在截完屏的下一帧才能处理RenderTexture，这点要注意.
 	auto _schedule = this->getScheduler();
 	auto replaceScene = [&](float tm)
 	{
-		//最后切换场景
+		//最后切换场景.
 		Director::getInstance()->pushScene(PauseLayer::createScene(render));
 	};
 	_schedule->schedule(replaceScene, this, 0.0f, 0, 0.0f, false, "screenshot");
@@ -371,7 +371,7 @@ void GameLayer::forward(Ref* pSender, Control::EventType type)
 
 void GameLayer::gameOver(float delta)
 {
-	// 对声音的处理
+	// 对声音的处理.
 	if (getBoolFromXML(MUSIC_KEY))
 	{
 		float music = getFloatFromXML(MUSICVOL)*100.0f;
@@ -386,7 +386,7 @@ void GameLayer::gameOver(float delta)
 	}
 	else
 		aduioEngine->pauseBackgroundMusic();
-	// 弹出游戏失败的界面
+	// 弹出游戏失败的界面.
 	auto bgSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("heiping.png"));
 	bgSprite->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
 	this->addChild(bgSprite, 5);
@@ -408,22 +408,22 @@ void GameLayer::gameOver(float delta)
 	bgSprite->addChild(energyTitle);
 	bgSprite->addChild(tips);
 
-	// 获取事件分发器
+	// 获取事件分发器.
 	auto dispatcher = Director::getInstance()->getEventDispatcher();
-	// 触摸监听器
+	// 触摸监听器.
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [](Touch* touch, Event* event){return true; };
 	listener->onTouchMoved = [](Touch* touch, Event* event){};
 	listener->onTouchEnded = [](Touch* touch, Event* event){
 		Director::getInstance()->replaceScene(GateMapLayer::createScene());
 	};
-	listener->setSwallowTouches(true);//是否吞没触摸
+	listener->setSwallowTouches(true);//是否吞没触摸.
 	dispatcher->addEventListenerWithSceneGraphPriority(listener, bgSprite);
 }
 
 void GameLayer::gameVictory(float delta)
 {
-	// 对声音的处理
+	// 对声音的处理.
 	if (getBoolFromXML(MUSIC_KEY))
 	{
 		float music = getFloatFromXML(MUSICVOL)*100.0f;
@@ -450,7 +450,7 @@ void GameLayer::gameVictory(float delta)
 	else
 		setBoolToXML(GATETHREE, true);
 
-	// 弹出游戏胜利的界面
+	// 弹出游戏胜利的界面.
 	auto bgSprite = Sprite::createWithSpriteFrame(SpriteFrameCache::getInstance()->getSpriteFrameByName("heiping.png"));
 	bgSprite->setPosition(WINSIZE.width / 2, WINSIZE.height / 2);
 	this->addChild(bgSprite, 5);
@@ -470,9 +470,9 @@ void GameLayer::gameVictory(float delta)
 	bgSprite->addChild(moneyTitle);
 	bgSprite->addChild(tips);
 
-	// 获取事件分发器
+	// 获取事件分发器.
 	auto dispatcher = Director::getInstance()->getEventDispatcher();
-	// 触摸监听器
+	// 触摸监听器.
 	auto listener = EventListenerTouchOneByOne::create();
 	listener->onTouchBegan = [](Touch* touch, Event* event){return true; };
 	listener->onTouchMoved = [](Touch* touch, Event* event){};
@@ -514,43 +514,43 @@ float GameLayer::getVelocity()
 }
 
 void GameLayer::update(float delta){
-	// 人物跳起
+	// 人物跳起.
 	if (m_bJump){
 		getVelocity();
 
-		if (velocity >= 0.1){  // 速度不为0
+		if (velocity >= 0.1){  // 速度不为0.
 			m_pHero->JumpUpAnimation("jumpup", 0.1f, m_bDirection);
 			if (m_bDirection == false)
 			{
-				if (m_pHero->getPositionX() <= WINSIZE.width - 8)//不让精灵超出右边,8可以改成你喜欢的
+				if (m_pHero->getPositionX() <= WINSIZE.width - 8)//不让精灵超出右边,8可以改成你喜欢的.
 				{
-					if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero)) //精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画
-						m_pHero->setPosition(ccp(m_pHero->getPosition().x + m_pHero->m_iSpeed, m_pHero->getPosition().y + velocity)); //向右走
+					if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero)) //精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画.
+						m_pHero->setPosition(ccp(m_pHero->getPosition().x + m_pHero->m_iSpeed, m_pHero->getPosition().y + velocity)); //向右走.
 					else
 					{
-						m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走
+						m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走.
 					}
-					//下面是移动地图
+					//下面是移动地图.
 					myMap->MoveMap(m_pHero);
 				}
 				else
-					m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走
+					m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走.
 			}
 			else
 			{
-				if (m_pHero->getPositionX() >= 8)//不让精灵超出左边,8可以改成你喜欢的
+				if (m_pHero->getPositionX() >= 8)//不让精灵超出左边,8可以改成你喜欢的.
 				{
-					if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画
-						m_pHero->setPosition(ccp(m_pHero->getPosition().x - m_pHero->m_iSpeed, m_pHero->getPosition().y + velocity)); //向左走
+					if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画.
+						m_pHero->setPosition(ccp(m_pHero->getPosition().x - m_pHero->m_iSpeed, m_pHero->getPosition().y + velocity)); //向左走.
 					else
 					{
-						m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走
+						m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走.
 					}
-					//下面是移动地图
+					//下面是移动地图.
 					myMap->MoveMap(m_pHero);
 				}
 				else
-					m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走
+					m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走.
 			}
 
 		}
@@ -559,35 +559,35 @@ void GameLayer::update(float delta){
 			m_pHero->JumpDownAnimation("jumpdown", 0.1f, m_bDirection);
 			if (m_bDirection == false)
 			{
-				if (m_pHero->getPositionX() <= WINSIZE.width - 8)//不让精灵超出右边,8可以改成你喜欢的
+				if (m_pHero->getPositionX() <= WINSIZE.width - 8)//不让精灵超出右边,8可以改成你喜欢的.
 				{
-					if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画
-						m_pHero->setPosition(ccp(m_pHero->getPosition().x + m_pHero->m_iSpeed, m_pHero->getPosition().y + velocity)); //向右走
+					if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画.
+						m_pHero->setPosition(ccp(m_pHero->getPosition().x + m_pHero->m_iSpeed, m_pHero->getPosition().y + velocity)); //向右走.
 					else
 					{
-						m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走
+						m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走.
 					}
-					//下面是移动地图
+					//下面是移动地图.
 					myMap->MoveMap(m_pHero);
 				}
 				else
-					m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走
+					m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走.
 			}
 			else
 			{
-				if (m_pHero->getPositionX() >= 8)//不让精灵超出左边,8可以改成你喜欢的
+				if (m_pHero->getPositionX() >= 8)//不让精灵超出左边,8可以改成你喜欢的.
 				{
-					if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画
-						m_pHero->setPosition(ccp(m_pHero->getPosition().x - m_pHero->m_iSpeed, m_pHero->getPosition().y + velocity)); //向左走
+					if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画.
+						m_pHero->setPosition(ccp(m_pHero->getPosition().x - m_pHero->m_iSpeed, m_pHero->getPosition().y + velocity)); //向左走.
 					else
 					{
-						m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走
+						m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走.
 					}
-					//下面是移动地图
+					//下面是移动地图.
 					myMap->MoveMap(m_pHero);
 				}
 				else
-					m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走
+					m_pHero->setPosition(ccp(m_pHero->getPosition().x, m_pHero->getPosition().y + velocity)); //向左走.
 			}
 		}
 
@@ -600,36 +600,36 @@ void GameLayer::update(float delta){
 		}
 	}
 
-	// 人物移动
+	// 人物移动.
 	if (m_bRun && m_bDirection == false && m_pHero->IsHurt == false && m_pHero->IsAttack == false && m_pHero->m_bIsJumping == false){
 		m_pHero->SetAnimation("run", 0.07f, m_bDirection);
-		if (m_pHero->getPositionX() <= WINSIZE.width - 8)//不让精灵超出右边,8可以改成你喜欢的
+		if (m_pHero->getPositionX() <= WINSIZE.width - 8)//不让精灵超出右边,8可以改成你喜欢的.
 		{
-			if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画
-				m_pHero->setPosition(ccp(m_pHero->getPosition().x + m_pHero->m_iSpeed, m_pHero->getPosition().y)); //向右走
-			//下面是移动地图
+			if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画.
+				m_pHero->setPosition(ccp(m_pHero->getPosition().x + m_pHero->m_iSpeed, m_pHero->getPosition().y)); //向右走.
+			//下面是移动地图.
 			myMap->MoveMap(m_pHero);
 		}
 	}else if (m_bRun && m_bDirection == true && m_pHero->IsHurt == false && m_pHero->m_bIsJumping == false){
 		m_pHero->SetAnimation("run", 0.07f, m_bDirection);
-		if (m_pHero->getPositionX() >= 8)//不让精灵超出左边,8可以改成你喜欢的
+		if (m_pHero->getPositionX() >= 8)//不让精灵超出左边,8可以改成你喜欢的.
 		{
-			if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画
-				m_pHero->setPosition(ccp(m_pHero->getPosition().x - m_pHero->m_iSpeed, m_pHero->getPosition().y)); //向右走
-			//下面是移动地图
+			if (!m_pHero->JudgePosition(WINSIZE) || myMap->JudgeMap(m_pHero))//精灵没到达窗口中间位置或者地图已经移动到边缘了，精灵才可以移动，否则只播放动画.
+				m_pHero->setPosition(ccp(m_pHero->getPosition().x - m_pHero->m_iSpeed, m_pHero->getPosition().y)); //向右走.
+			//下面是移动地图.
 			myMap->MoveMap(m_pHero);
 		}
 	}
 
-	// 主角和怪物攻击碰撞检测
+	// 主角和怪物攻击碰撞检测.
 	if (m_pHero->IsAttack){
 		for (auto monster : monsterShowList){
-			// 怪物没死
+			// 怪物没死.
 			if (monster->Isdead == false && isAttackMonster(m_pHero, monster) && m_pHero->m_bIsJumping == false){
-				// 得到两点x的距离, 记得怪物的坐标要加上地图的
+				// 得到两点x的距离, 记得怪物的坐标要加上地图的.
 				float x = m_pHero->getPositionX() - (monster->getPositionX() + myMap->getPositionX());
 
-				//先计算怪物和英雄的距离
+				//先计算怪物和英雄的距离.
 				auto dis = fabs(x);
 				if (dis <= 150){
 					if (monster->m_iType == 1){
@@ -647,10 +647,10 @@ void GameLayer::update(float delta){
 	for (auto monster : monsterShowList){
 		if (!monster->Isdead){
 			if (monster->IsAttack && m_pHero->IsDead == false && m_pHero->m_bIsJumping == false){
-				// 得到两点x的距离, 记得怪物的坐标要加上地图的
+				// 得到两点x的距离, 记得怪物的坐标要加上地图的.
 				float x = m_pHero->getPositionX() - (monster->getPositionX() + myMap->getPositionX());
 
-				//先计算怪物和英雄的距离
+				//先计算怪物和英雄的距离.
 				auto dis = fabs(x);
 				if (dis <= 130){
 					m_pHero->HurtByMonsterAnimation("hurt", 0.2f, m_bDirection);
@@ -667,15 +667,15 @@ void GameLayer::update(float delta){
 		m_pComboPic->setVisible(false);
 	}
 
-	// 主角和怪物攻击碰撞检测
+	// 主角和怪物攻击碰撞检测.
 	if (m_pHero->IsAttack && m_pHero->m_bCanCrazy){
 		for (auto monster : monsterShowList){
-			// 怪物没死
+			// 怪物没死.
 			if (monster->Isdead == false && isAttackMonster(m_pHero, monster) && m_pHero->m_bIsJumping == false){
-				// 得到两点x的距离, 记得怪物的坐标要加上地图的
+				// 得到两点x的距离, 记得怪物的坐标要加上地图的.
 				float x = m_pHero->getPositionX() - (monster->getPositionX() + myMap->getPositionX());
 
-				//先计算怪物和英雄的距离
+				//先计算怪物和英雄的距离.
 				auto dis = fabs(x);
 				if (dis <= 350){
 					monster->HurtAnimation("monsterHurt", monster->MonsterDirecton, 0.2f, 1);
@@ -684,12 +684,12 @@ void GameLayer::update(float delta){
 		}
 	}
 
-	// 游戏结束判定
+	// 游戏结束判定.
 	if (m_pHero->IsDead){
 		this->scheduleOnce(schedule_selector(GameLayer::gameOver), 1.0f);
 		this->unscheduleUpdate();
 	}
-	// 怪物全死
+	// 怪物全死.
 	if (m_bFlag3 == false){
 		bool noMonster = true;
 		for (auto monster : monsterShowList){

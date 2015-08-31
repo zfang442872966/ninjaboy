@@ -84,4 +84,4 @@ private:
 	float dis;                                   // 当前怪物和英雄的距离
 	int   m_iHP;
 };
-#endif 
+#endif
