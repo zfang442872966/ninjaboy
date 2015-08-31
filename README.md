@@ -1,3 +1,3 @@
 # ninjaboy
 
-This is an ACTRPG game.
+This is an ACTRPG game
